@@ -18,7 +18,7 @@
         android:id="@+id/country_check"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:text="@string/country"
+        android:text="@string/country_name"
         android:textSize="20sp"
         android:padding="16dp"
         android:gravity="center"
