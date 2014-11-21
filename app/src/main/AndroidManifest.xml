@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pidal.alfonso.phonedialergroup1" >
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- Splash Screen -->
+        <activity
+            android:name="pidal.alfonso.phonedialergroup1.SplashScreenAcitivty"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Dialer Screen -->
+        <activity
+            android:name="pidal.alfonso.phonedialergroup1.DialerActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <!-- Check Number Screen -->
+        <activity
+            android:name="pidal.alfonso.phonedialergroup1.CheckNumberActivity"
+            android:label="@string/title_activity_check_number"
+            android:parentActivityName="pidal.alfonso.phonedialergroup1.DialerActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pidal.alfonso.phonedialergroup1.DialerActivity" />
+        </activity>
+
+    </application>
+
+</manifest>
