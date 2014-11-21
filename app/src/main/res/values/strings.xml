@@ -17,8 +17,8 @@
     <string name="number_8">8</string>
     <string name="number_9">9</string>
     <string name="number_0">0</string>
-    <string name="title_activity_splash_screen_acitivty">SplashScreenAcitivty</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="country">Country</string>
+
 
 </resources>
