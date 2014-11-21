@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class SplashScreenAcitivty extends Activity {
+public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class SplashScreenAcitivty extends Activity {
             public void run() {
 
                 // Start the next activity
-                Intent i = new Intent(SplashScreenAcitivty.this, DialerActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, DialerActivity.class);
                 startActivity(i);
 
                 // Close the activity so the user won't able to go back this

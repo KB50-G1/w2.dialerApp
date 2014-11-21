@@ -12,7 +12,7 @@
 
         <!-- Splash Screen -->
         <activity
-            android:name="pidal.alfonso.phonedialergroup1.SplashScreenAcitivty"
+            android:name=".SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
