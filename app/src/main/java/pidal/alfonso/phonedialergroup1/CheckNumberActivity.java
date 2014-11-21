@@ -43,7 +43,7 @@ public class CheckNumberActivity extends Activity {
         phone_check.setText(formated_number);
 
         country_check = (TextView) findViewById(R.id.country_check);
-        country_check.append(getCountry());
+        country_check.append(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phone_check));
 
     }
 
@@ -93,51 +93,5 @@ public class CheckNumberActivity extends Activity {
         startActivity(i);
     }
 
-    public String getCountry(){
-        String country="";
 
-        String[] rl=this.getResources().getStringArray(R.array.CountryCodes2);
-
-        for(int i=0;i<rl.length;i++){
-            String[] g=rl[i].split(",");
-            if(g[0].equals(getFirstThreeChar(phone_check))){
-                country=g[1];
-                break;
-            }
-            if (g[0].equals(getFirstTwoChar(phone_check))){
-                country=g[1];
-                break;
-            }
-            if (g[0].equals(getFirstChar(phone_check))){
-                country=g[1];
-                break;
-            }
-        }
-
-        return country;
-    }
-
-    public String getFirstThreeChar(TextView argText){
-        String threeChar;
-        String text = argText.getText().toString();
-        threeChar = text.substring(0,4);
-
-        return threeChar;
-    }
-
-    public String getFirstTwoChar(TextView argText){
-        String twoChar;
-        String text = argText.getText().toString();
-        twoChar = text.substring(0,3);
-
-        return twoChar;
-    }
-
-    public String getFirstChar(TextView argText){
-        String oneChar;
-        String text = argText.getText().toString();
-        oneChar = text.substring(0,2);
-
-        return oneChar;
-    }
 }
