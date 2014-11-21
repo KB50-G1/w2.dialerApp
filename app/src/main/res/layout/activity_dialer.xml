@@ -23,7 +23,7 @@
             android:maxLines="1"
             android:padding="10dp"
             android:text="+"
-            android:textSize="40sp"
+            android:textSize="30sp"
             />
 
         <Button
