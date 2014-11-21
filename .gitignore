@@ -1,12 +1,7 @@
-#.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-#.DS_Store
-/build
+gradle/
 
-app/src/main/java
-app/src/androidTest/java
+gradle.properties
+
 
 #built application files
 *.apk
