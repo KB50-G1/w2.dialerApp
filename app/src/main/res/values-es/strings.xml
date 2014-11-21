@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">Dialer App</string>
-    <string name="action_settings">Settings</string>
-    <string name="text_phone_number">Check Number</string>
-    <string name="title_activity_check_number">Checking Number</string>
-    <string name="button_call">Call</string>
-    <string name="button_goback">Go Back</string>
+    <string name="action_settings">Preferencias</string>
+    <string name="text_phone_number">Comprobar número</string>
+    <string name="title_activity_check_number">Comprbación de número</string>
+    <string name="button_call">Llamar</string>
+    <string name="button_goback">Volver</string>
     <string name="number_1">1</string>
     <string name="number_2">2</string>
     <string name="number_3">3</string>
@@ -17,7 +17,7 @@
     <string name="number_8">8</string>
     <string name="number_9">9</string>
     <string name="number_0">0</string>
-    <string name="country_name">Country</string>
+    <string name="country_name">Pais</string>
 
 
 </resources>
