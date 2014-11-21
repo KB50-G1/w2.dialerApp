@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class CheckNumberActivity extends Activity {
 
     private TextView phone_check;
+    private TextView country_check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,13 @@ public class CheckNumberActivity extends Activity {
 
         // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
+        //phone_number = (TextView) findViewById(R.id.text_phone_number);
 
         // TODO: Get the phone from the intent, get the country code, and display the country name in another textview.
+
+
+
+
 
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
@@ -35,6 +41,9 @@ public class CheckNumberActivity extends Activity {
 
         // Set the text with the formated text.
         phone_check.setText(formated_number);
+
+        country_check = (TextView) findViewById(R.id.country_check);
+        country_check.append(getCountry());
 
     }
 
@@ -82,5 +91,53 @@ public class CheckNumberActivity extends Activity {
         // Create new intent to dial the number shown on screen and fires the activity.
         Intent i = new Intent(android.content.Intent.ACTION_CALL, Uri.parse("tel:+" + phone_check.getText().toString()));
         startActivity(i);
+    }
+
+    public String getCountry(){
+        String country="";
+
+        String[] rl=this.getResources().getStringArray(R.array.CountryCodes2);
+
+        for(int i=0;i<rl.length;i++){
+            String[] g=rl[i].split(",");
+            if(g[0].equals(getFirstThreeChar(phone_check))){
+                country=g[1];
+                break;
+            }
+            if (g[0].equals(getFirstTwoChar(phone_check))){
+                country=g[1];
+                break;
+            }
+            if (g[0].equals(getFirstChar(phone_check))){
+                country=g[1];
+                break;
+            }
+        }
+
+        return country;
+    }
+
+    public String getFirstThreeChar(TextView argText){
+        String threeChar;
+        String text = argText.getText().toString();
+        threeChar = text.substring(0,4);
+
+        return threeChar;
+    }
+
+    public String getFirstTwoChar(TextView argText){
+        String twoChar;
+        String text = argText.getText().toString();
+        twoChar = text.substring(0,3);
+
+        return twoChar;
+    }
+
+    public String getFirstChar(TextView argText){
+        String oneChar;
+        String text = argText.getText().toString();
+        oneChar = text.substring(0,2);
+
+        return oneChar;
     }
 }
