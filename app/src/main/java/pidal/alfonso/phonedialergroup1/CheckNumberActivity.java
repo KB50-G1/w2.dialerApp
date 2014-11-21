@@ -23,10 +23,17 @@ public class CheckNumberActivity extends Activity {
 
         // Get the intent and use the data inside it to update the phone number on screen.
         Intent intent = getIntent();
+
+        // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
 
+        // TODO: Get the phone from the intent, get the country code, and display the country name in another textview.
+
+        // Format the phone number received on the intent.
+        // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
         String formated_number = PhoneNumberUtils.formatNumber(intent.getStringExtra("phone_number"), "NL");
 
+        // Set the text with the formated text.
         phone_check.setText(formated_number);
 
     }
@@ -36,24 +43,8 @@ public class CheckNumberActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-
         // Toast.makeText(this, "Paused!!", Toast.LENGTH_SHORT).show();
-
         // TODO: This is not working, no idea why. But it should be fired also when the back button (action bar) is pressed.
-        /*
-        Intent i = new Intent();
-        TextView phone_check = (TextView) findViewById(R.id.phone_check);
-        i.putExtra("phone_number_returns", phone_check.getText().toString() );
-
-        // Toast.makeText(this, phone_check.getText().toString(), Toast.LENGTH_SHORT).show();
-
-        setResult(RESULT_OK, i);
-        */
-
-        /*
-        Intent i = getIntent();
-        setResult(RESULT_OK, i);
-        */
     }
 
     @Override
