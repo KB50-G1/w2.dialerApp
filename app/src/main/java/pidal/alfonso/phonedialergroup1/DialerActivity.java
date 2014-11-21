@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,17 +16,61 @@ import android.widget.Toast;
 public class DialerActivity extends Activity {
 
     private TextView phone_number;
+    private ImageButton call_button;
+    private ImageButton delete_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialer);
 
-
+        // Hidding the Action Bar
         ActionBar actionBar = getActionBar();
         actionBar.hide();
 
+        // Getting references for activity views.
         phone_number = (TextView) findViewById(R.id.text_phone_number);
+        call_button = (ImageButton) findViewById(R.id.button_check);
+        delete_button = (ImageButton) findViewById(R.id.button_remove);
+
+        call_button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                goToCheckNumber(view);
+            }
+        });
+
+        delete_button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+                // TODO: You know an easier way to do this?
+
+                // get the phone number
+                String number = phone_number.getText().toString();
+
+                // Avoid deleting the + sign on the string.
+                if (number.length() <= 1)
+                    return;
+
+                // delete last character.
+                number = number.substring(0, number.length() - 1);
+
+                // set new string without last number
+                phone_number.setText(number);
+            }
+        });
+
+        delete_button.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                phone_number.setText("+");
+
+                return true;
+            }
+        });
     }
 
     @Override
@@ -71,24 +116,6 @@ public class DialerActivity extends Activity {
 
         // append the button text (the number itself) to the phone number.
         phone_number.append(pressed_button.getText().toString());
-    }
-
-    public void removeNumber(View view) {
-
-        // TODO: You know an easier way to do this?
-
-        // get the phone number
-        String number = phone_number.getText().toString();
-
-        // Avoid deleting the + sign on the string.
-        if (number.length() <= 1)
-            return;
-
-        // delete last character.
-        number = number.substring(0, number.length() - 1);
-
-        // set new string without last number
-        phone_number.setText(number);
     }
 
     @Override

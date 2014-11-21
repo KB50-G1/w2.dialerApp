@@ -39,12 +39,18 @@
 
     </LinearLayout>
 
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+
 
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="30dp"
-        android:layout_marginTop="30dp"
+
         android:layout_gravity="center">
 
         <TableRow
@@ -164,10 +170,11 @@
         android:id="@+id/button_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="goToCheckNumber"
         android:text="@string/text_phone_number"
         android:src="@drawable/ic_launcher"
         android:background="@color/white"
         android:layout_gravity="center"/>
-
+</LinearLayout>
 
 </LinearLayout>
