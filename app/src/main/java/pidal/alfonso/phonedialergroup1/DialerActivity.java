@@ -103,7 +103,7 @@ public class DialerActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 123) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Number is back!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Number is back!", Toast.LENGTH_SHORT).show();
                 phone_number.setText(data.getStringExtra("phone_number"));
             }
         }

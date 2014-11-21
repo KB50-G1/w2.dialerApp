@@ -4,18 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 public class CheckNumberActivity extends Activity {
 
     private TextView phone_check;
-    private TextView country_check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,48 +28,41 @@ public class CheckNumberActivity extends Activity {
 
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
-        String formated_number = PhoneNumberUtils.formatNumber(intent.getStringExtra("phone_number"), "NL");
+        String formatted_number = PhoneNumberUtils.formatNumber(intent.getStringExtra("phone_number"), "NL");
 
-        // Set the text with the formated text.
-        phone_check.setText(formated_number);
+
+        // TODO: Fix this. IF statement not working no idea why.
+        // Set the text with the formatted text.
+        phone_check.setText(formatted_number);
+        /*
+        if(!formatted_number.isEmpty())
+            phone_check.setText(formatted_number);
+        else
+            phone_check.setText("Invalid Phone Number");
+        */
 
         // Getting the country text view
-        country_check = (TextView) findViewById(R.id.country_check);
+        TextView country_check = (TextView) findViewById(R.id.country_check);
 
         // Appending the country detected using the PhoneFunctions Helper Class.
-        country_check.append(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phone_check));
+        String country_code = PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phone_check);
+
+        if(country_code.length() > 1)
+            country_check.append(" " + country_code);
+        else
+            country_check.setText("No country detected");
 
     }
 
     // TODO: why this activity doesn't need the onSaveInstance() and onRestoreInstance() methods to save state? wtf!!
+    // Answer: Because the data is taken from the intent each time its created.
+    // Its OK like this because user can't modify the data on this activity, otherwise changes wouldn't be saved!.
 
     @Override
     protected void onPause() {
         super.onPause();
         // Toast.makeText(this, "Paused!!", Toast.LENGTH_SHORT).show();
         // TODO: This is not working, no idea why. But it should be fired also when the back button (action bar) is pressed.
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // getMenuInflater().inflate(R.menu.menu_check_number, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void goBack(View view)

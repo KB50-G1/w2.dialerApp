@@ -1,6 +1,5 @@
 package pidal.alfonso.phonedialergroup1;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ public class SplashScreenAcitivty extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen_acitivty);
+        setContentView(R.layout.activity_splash_screen_activity);
 
         TimerTask task = new TimerTask() {
             @Override
