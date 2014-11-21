@@ -1,5 +1,6 @@
 package pidal.alfonso.phonedialergroup1;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,11 @@ public class DialerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialer);
+
+
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
+
         phone_number = (TextView) findViewById(R.id.text_phone_number);
     }
 
@@ -41,6 +47,7 @@ public class DialerActivity extends Activity {
     public void goToCheckNumber(View view) {
 
         int request_code = 123;
+
         //Intent intent = new Intent("pidal.alfonso.phonedialergroup1.DialerActivity");
         Intent intent = new Intent(this, CheckNumberActivity.class);
 
@@ -74,7 +81,7 @@ public class DialerActivity extends Activity {
         String number = phone_number.getText().toString();
 
         // Avoid deleting the + sign on the string.
-        if(number.length() <= 1)
+        if (number.length() <= 1)
             return;
 
         // delete last character.

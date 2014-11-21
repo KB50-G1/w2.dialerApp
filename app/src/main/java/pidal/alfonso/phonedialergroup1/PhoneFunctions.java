@@ -10,7 +10,7 @@ import java.lang.Comparable;
 
 public final class PhoneFunctions implements Comparable<Object> {
 
-    private PhoneFunctions instance;
+    private static PhoneFunctions instance;
     private String phoneNumber;
 
 

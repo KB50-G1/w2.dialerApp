@@ -27,13 +27,6 @@ public class CheckNumberActivity extends Activity {
 
         // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
-        //phone_number = (TextView) findViewById(R.id.text_phone_number);
-
-        // TODO: Get the phone from the intent, get the country code, and display the country name in another textview.
-
-
-
-
 
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
@@ -42,7 +35,10 @@ public class CheckNumberActivity extends Activity {
         // Set the text with the formated text.
         phone_check.setText(formated_number);
 
+        // Getting the country text view
         country_check = (TextView) findViewById(R.id.country_check);
+
+        // Appending the country detected using the PhoneFunctions Helper Class.
         country_check.append(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phone_check));
 
     }
