@@ -1,22 +1,18 @@
 package pidal.alfonso.phonedialergroup1;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-
 
 public class CheckNumberActivity extends Activity {
 
@@ -37,7 +33,7 @@ public class CheckNumberActivity extends Activity {
         phone_number = intent.getStringExtra("phone_number");
 
         // Call the API, and pass the phone number to it so it can grab data.
-        new PhoneAPICall().execute(phone_number);
+        new PhoneAPICall(this).execute(phone_number);
 
         // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
@@ -92,9 +88,20 @@ public class CheckNumberActivity extends Activity {
     }
 
     private class PhoneAPICall extends AsyncTask<String, Void, String> {
+
+        private Activity activity;
+        private ProgressDialog dialog;
+
+        private PhoneAPICall(Activity activity) {
+            this.activity = activity;
+            this.dialog = new ProgressDialog(activity);
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            this.dialog.setMessage("Checking the phone number...");
+            this.dialog.show();
         }
 
         @Override
@@ -115,6 +122,10 @@ public class CheckNumberActivity extends Activity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+
+            if (dialog.isShowing()) {
+                dialog.dismiss();
             }
 
         }
