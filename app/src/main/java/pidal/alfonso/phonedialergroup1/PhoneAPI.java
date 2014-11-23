@@ -64,6 +64,8 @@ public class PhoneAPI {
             e.printStackTrace();
         }
 
+        Log.v("JSON", stringBuilder.toString());
+
         return stringBuilder.toString();
     }
 }
