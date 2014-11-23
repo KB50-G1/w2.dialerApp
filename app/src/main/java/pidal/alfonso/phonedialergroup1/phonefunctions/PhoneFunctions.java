@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.phonedialergroup1.phonefunctions;
 
 
 import android.widget.TextView;

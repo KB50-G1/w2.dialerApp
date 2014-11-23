@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.phonedialergroup1.phoneapi;
 
 import android.util.Log;
 

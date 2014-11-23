@@ -13,6 +13,10 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import pidal.alfonso.phonedialergroup1.phoneapi.NetworkHelper;
+import pidal.alfonso.phonedialergroup1.phoneapi.PhoneAPI;
+import pidal.alfonso.phonedialergroup1.phonefunctions.PhoneFunctions;
+
 public class CheckNumberActivity extends Activity {
 
     private TextView phone_check;

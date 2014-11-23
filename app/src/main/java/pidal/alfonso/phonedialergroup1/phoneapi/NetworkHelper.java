@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.phonedialergroup1.phoneapi;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
