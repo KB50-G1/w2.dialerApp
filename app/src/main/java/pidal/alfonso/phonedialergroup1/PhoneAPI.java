@@ -42,8 +42,7 @@ public class PhoneAPI {
             StatusLine statusLine = response.getStatusLine();
             int statusCode = statusLine.getStatusCode();
 
-            if(statusCode == 200)
-            {
+            if (statusCode == 200) {
                 HttpEntity entity = response.getEntity();
                 InputStream content = entity.getContent();
                 BufferedReader reader = new BufferedReader(
@@ -51,13 +50,10 @@ public class PhoneAPI {
                 );
 
                 String line;
-                while((line = reader.readLine()) != null)
-                {
+                while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line);
                 }
-            }
-            else
-            {
+            } else {
                 Log.e("JSON", "Failed to connect/download JSON!");
             }
 

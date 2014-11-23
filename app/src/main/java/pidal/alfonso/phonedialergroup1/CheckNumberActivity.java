@@ -1,16 +1,15 @@
 package pidal.alfonso.phonedialergroup1;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,7 +32,7 @@ public class CheckNumberActivity extends Activity {
         phone_number = intent.getStringExtra("phone_number");
 
         // Call the API only IF internet is available, and pass the phone number to it so it can grab data.
-        if(NetworkHelper.isNetworkAvailable(getApplicationContext()))
+        if (NetworkHelper.isNetworkAvailable(getApplicationContext()))
             new PhoneAPICall(this).execute(phone_number);
 
         // Get the phone text view.

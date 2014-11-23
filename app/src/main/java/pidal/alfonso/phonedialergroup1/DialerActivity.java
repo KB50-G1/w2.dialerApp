@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class DialerActivity extends Activity {
@@ -33,18 +32,14 @@ public class DialerActivity extends Activity {
         call_button = (ImageButton) findViewById(R.id.button_check);
         delete_button = (ImageButton) findViewById(R.id.button_remove);
 
-        call_button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
+        call_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 goToCheckNumber(view);
             }
         });
 
-        delete_button.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 // TODO: You know an easier way to do this?
 
                 // get the phone number
