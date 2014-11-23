@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "pidal.alfonso.phonedialergroup1"
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -16,10 +16,31 @@ android {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        repositories {
+
+        }
     }
+
+    /*
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+    }
+    */
+}
+
+repositories {
+    // mavenCentral()
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:21.0.2'
+
+    // compile 'com.mashape.unirest:unirest-java:1.3.20'
+
 }
+
+

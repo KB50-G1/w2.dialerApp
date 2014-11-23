@@ -3,13 +3,13 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="#0099cc"
-             tools:context="pidal.alfonso.phonedialergroup1.SplashScreenAcitivty">
+             tools:context="pidal.alfonso.phonedialergroup1.SplashScreenActivity">
 
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
         android:layout_gravity="center"
         android:background="@drawable/red_phone"/>
 </FrameLayout>
