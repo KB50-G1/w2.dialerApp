@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class DialerActivity extends Activity {
 
     private TextView phone_number;
-    private ImageButton call_button;
+    private Button call_button;
     private ImageButton delete_button;
 
     @Override
@@ -29,7 +29,7 @@ public class DialerActivity extends Activity {
 
         // Getting references for activity views.
         phone_number = (TextView) findViewById(R.id.text_phone_number);
-        call_button = (ImageButton) findViewById(R.id.button_check);
+        call_button = (Button) findViewById(R.id.button_check);
         delete_button = (ImageButton) findViewById(R.id.button_remove);
 
         call_button.setOnClickListener(new View.OnClickListener() {

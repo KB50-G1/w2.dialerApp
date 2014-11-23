@@ -41,15 +41,16 @@
 
 
     <TableLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:padding="30dp">
+        android:padding="10dp">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/button_1"
@@ -58,6 +59,7 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_1"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
 
             <Button
@@ -67,6 +69,7 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_2"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
 
             <Button
@@ -76,12 +79,14 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_3"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
             <Button
                 android:id="@+id/button_4"
@@ -90,6 +95,7 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_4"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
 
             <Button
@@ -99,6 +105,7 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_5"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
 
             <Button
@@ -108,12 +115,14 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_6"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
             <Button
                 android:id="@+id/button_7"
@@ -122,6 +131,7 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_7"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
 
             <Button
@@ -131,6 +141,7 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_8"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
 
             <Button
@@ -140,18 +151,22 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_9"
+                android:layout_weight="1"
                 android:textSize="25sp"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            >
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/button_0"
@@ -160,25 +175,30 @@
                 android:background="@color/white"
                 android:onClick="addNumber"
                 android:text="@string/number_0"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:layout_weight="1"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:layout_weight="1"/>
         </TableRow>
 
     </TableLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/button_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/white"
-        android:src="@drawable/ic_launcher"
-        android:text="@string/text_phone_number"/>
+        android:text="@string/text_phone_number"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:backgroundTint="@color/lightGray"
+        android:drawableLeft="@drawable/ic_launcher"/>
 
 
 </LinearLayout>
