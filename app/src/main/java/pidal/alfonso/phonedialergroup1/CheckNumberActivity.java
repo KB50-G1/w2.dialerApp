@@ -32,8 +32,9 @@ public class CheckNumberActivity extends Activity {
 
         phone_number = intent.getStringExtra("phone_number");
 
-        // Call the API, and pass the phone number to it so it can grab data.
-        new PhoneAPICall(this).execute(phone_number);
+        // Call the API only IF internet is available, and pass the phone number to it so it can grab data.
+        if(NetworkHelper.isNetworkAvailable(getApplicationContext()))
+            new PhoneAPICall(this).execute(phone_number);
 
         // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
