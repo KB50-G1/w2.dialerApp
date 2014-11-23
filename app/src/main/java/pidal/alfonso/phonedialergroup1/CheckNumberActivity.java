@@ -19,21 +19,12 @@ public class CheckNumberActivity extends Activity {
     private TextView country_check;
     private TextView linetype_check;
 
-    private String phone_number;
+    private PhoneNumber phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_number);
-
-        // Get the intent and use the data inside it to update the phone number on screen.
-        Intent intent = getIntent();
-
-        phone_number = intent.getStringExtra("phone_number");
-
-        // Call the API only IF internet is available, and pass the phone number to it so it can grab data.
-        if (NetworkHelper.isNetworkAvailable(getApplicationContext()))
-            new PhoneAPICall(this).execute(phone_number);
 
         // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
@@ -44,9 +35,48 @@ public class CheckNumberActivity extends Activity {
         // Get the line type text view
         linetype_check = (TextView) findViewById(R.id.linetype_check);
 
+        if (savedInstanceState == null) {
+
+            // Get the intent and use the data inside it to update the phone number on screen.
+            Intent intent = getIntent();
+            phoneNumber = new PhoneNumber(intent.getStringExtra("phone_number"));
+            // Call the API only IF internet is available, and pass the phone number to it so it can grab data.
+            if (NetworkHelper.isNetworkAvailable(getApplicationContext()))
+                new PhoneAPICall(this).execute(phoneNumber.getNumber());
+            else {
+                noInternetData();
+            }
+
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Save the object when the activity is destroyed
+        outState.putSerializable("phoneNumber", phoneNumber);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Get back the saved object
+        phoneNumber = (PhoneNumber) savedInstanceState.getSerializable("phoneNumber");
+
+        // Re-populate the fields
+        phone_check.setText(phoneNumber.getFormattedNumber());
+        country_check.setText(phoneNumber.getCountry());
+        linetype_check.setText(phoneNumber.getLineType());
+    }
+
+    public void noInternetData() {
+
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
-        String formatted_number = PhoneNumberUtils.formatNumber(intent.getStringExtra("phone_number"), "NL");
+        String formatted_number = PhoneNumberUtils.formatNumber(phoneNumber.getNumber(), "NL");
 
         // TODO: Fix this. IF statement not working no idea why.
         // Set the text with the formatted text.
@@ -60,12 +90,7 @@ public class CheckNumberActivity extends Activity {
         else
             country_check.setText("No country detected");
 
-
     }
-
-    // TODO: why this activity doesn't need the onSaveInstance() and onRestoreInstance() methods to save state? wtf!!
-    // Answer: Because the data is taken from the intent each time its created.
-    // Its OK like this because user can't modify the data on this activity, otherwise changes wouldn't be saved!.
 
     @Override
     protected void onPause() {
@@ -112,11 +137,15 @@ public class CheckNumberActivity extends Activity {
 
                 JSONObject jsonResult = new JSONObject(result);
 
-                String phoneName = jsonResult.getString("formatted-number");
+                String phoneFormatted = jsonResult.getString("formatted-number");
                 String countryName = jsonResult.getString("region");
                 String lineName = jsonResult.getString("line-type");
 
-                phone_check.setText(phoneName);
+                phoneNumber.setFormattedNumber(phoneFormatted);
+                phoneNumber.setCountry(countryName);
+                phoneNumber.setLineType(lineName);
+
+                phone_check.setText(phoneFormatted);
                 country_check.setText(countryName);
                 linetype_check.setText(lineName);
 
