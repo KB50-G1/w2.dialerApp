@@ -2,18 +2,29 @@ package pidal.alfonso.phonedialergroup1;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 
 public class CheckNumberActivity extends Activity {
 
     private TextView phone_check;
+    private TextView country_check;
+    private TextView linetype_check;
+
+    private String phone_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,34 +34,36 @@ public class CheckNumberActivity extends Activity {
         // Get the intent and use the data inside it to update the phone number on screen.
         Intent intent = getIntent();
 
+        phone_number = intent.getStringExtra("phone_number");
+
+        // Call the API, and pass the phone number to it so it can grab data.
+        new PhoneAPICall().execute(phone_number);
+
         // Get the phone text view.
         phone_check = (TextView) findViewById(R.id.phone_check);
+
+        // Getting the country text view
+        country_check = (TextView) findViewById(R.id.country_check);
+
+        // Get the line type text view
+        linetype_check = (TextView) findViewById(R.id.linetype_check);
 
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
         String formatted_number = PhoneNumberUtils.formatNumber(intent.getStringExtra("phone_number"), "NL");
 
-
         // TODO: Fix this. IF statement not working no idea why.
         // Set the text with the formatted text.
         phone_check.setText(formatted_number);
-        /*
-        if(!formatted_number.isEmpty())
-            phone_check.setText(formatted_number);
-        else
-            phone_check.setText("Invalid Phone Number");
-        */
-
-        // Getting the country text view
-        TextView country_check = (TextView) findViewById(R.id.country_check);
 
         // Appending the country detected using the PhoneFunctions Helper Class.
         String country_code = PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phone_check);
 
-        if(country_code.length() > 1)
+        if (country_code.length() > 1)
             country_check.append(" " + country_code);
         else
             country_check.setText("No country detected");
+
 
     }
 
@@ -65,19 +78,57 @@ public class CheckNumberActivity extends Activity {
         // TODO: This is not working, no idea why. But it should be fired also when the back button (action bar) is pressed.
     }
 
-    public void goBack(View view)
-    {
+    public void goBack(View view) {
         // Get the intent, set the result to OK, and finish the activity. onActivityResult() will be fired in the DialerActivity.
         Intent i = getIntent();
         setResult(RESULT_OK, i);
         finish();
     }
 
-    public void callNumber(View view)
-    {
+    public void callNumber(View view) {
         // Create new intent to dial the number shown on screen and fires the activity.
         Intent i = new Intent(android.content.Intent.ACTION_CALL, Uri.parse("tel:+" + phone_check.getText().toString()));
         startActivity(i);
+    }
+
+    private class PhoneAPICall extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+
+                JSONObject jsonResult = new JSONObject(result);
+
+                String phoneName = jsonResult.getString("formatted-number");
+                String countryName = jsonResult.getString("region");
+                String lineName = jsonResult.getString("line-type");
+
+                phone_check.setText(phoneName);
+                country_check.setText(countryName);
+                linetype_check.setText(lineName);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String phoneNumberString = params[0];
+            PhoneAPI call = new PhoneAPI(phoneNumberString);
+
+            String data = call.getData();
+
+            return data;
+        }
     }
 
 

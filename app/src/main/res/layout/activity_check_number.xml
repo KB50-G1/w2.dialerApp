@@ -23,6 +23,15 @@
         android:padding="16dp"
         android:gravity="center"
         />
+    <TextView
+        android:id="@+id/linetype_check"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:text=""
+        android:textSize="20sp"
+        android:padding="16dp"
+        android:gravity="center"
+        />
 
     <LinearLayout
         android:layout_height="wrap_content"
