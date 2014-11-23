@@ -20,7 +20,6 @@ import java.io.InputStreamReader;
  */
 public class PhoneAPI {
 
-
     private String phoneNumber;
 
     public PhoneAPI(String phoneNumber) {
@@ -55,6 +54,7 @@ public class PhoneAPI {
                 }
             } else {
                 Log.e("JSON", "Failed to connect/download JSON!");
+                Log.e("STATUS_CODE", Integer.toString(statusCode));
             }
 
 
