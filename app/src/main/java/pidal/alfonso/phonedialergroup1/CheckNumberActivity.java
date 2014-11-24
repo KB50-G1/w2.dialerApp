@@ -152,7 +152,7 @@ public class CheckNumberActivity extends Activity {
                 JSONObject jsonResult = new JSONObject(result);
 
                 String phoneFormatted = jsonResult.getString("formatted-number");
-                String countryName = jsonResult.getString("region");
+                String countryName = jsonResult.getString("iso-code") + ", " + jsonResult.getString("region");
                 String lineName = jsonResult.getString("line-type");
 
                 phoneNumber.setFormattedNumber(phoneFormatted);
