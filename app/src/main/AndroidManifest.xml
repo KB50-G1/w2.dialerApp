@@ -38,7 +38,8 @@
         <activity
             android:name="pidal.alfonso.phonedialergroup1.CheckNumberActivity"
             android:label="@string/title_activity_check_number"
-            android:parentActivityName="pidal.alfonso.phonedialergroup1.DialerActivity">
+            >
+            <!-- android:parentActivityName="pidal.alfonso.phonedialergroup1.DialerActivity" -->
             <!--
                 <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
