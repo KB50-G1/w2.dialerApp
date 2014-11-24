@@ -1,21 +1,21 @@
 package pidal.alfonso.phonedialergroup1;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-
 public class CheckNumberActivity extends Activity {
 
-    private TextView phone_check;
-    private TextView country_check;
+    private TextView phoneCheck;
+    private TextView countryCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +26,25 @@ public class CheckNumberActivity extends Activity {
         Intent intent = getIntent();
 
         // Get the phone text view.
-        phone_check = (TextView) findViewById(R.id.phone_check);
+        phoneCheck = (TextView) findViewById(R.id.phone_check);
+
+        // Getting the country text view
+        countryCheck = (TextView) findViewById(R.id.country_check);
 
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
-        String formated_number = PhoneNumberUtils.formatNumber(intent.getStringExtra("phone_number"), "NL");
+        String formattedNumber = PhoneNumberUtils.formatNumber(intent.getStringExtra("phoneNumber"), "NL");
 
-        // Set the text with the formated text.
-        phone_check.setText(formated_number);
+        if(intent.getStringExtra("phoneNumber").equals(formattedNumber)){
+            // Set the text if the phone number is not formatted.
+            phoneCheck.setText("Not a valid number");
+        } else {
+            // Set the text with the formatted text.
+            phoneCheck.setText(formattedNumber);
 
-        // Getting the country text view
-        country_check = (TextView) findViewById(R.id.country_check);
-
-        // Appending the country detected using the PhoneFunctions Helper Class.
-        country_check.append(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phone_check));
-
+            // Appending the country detected using the PhoneFunctions Helper Class.
+            countryCheck.append(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phoneCheck));
+        }
     }
 
     // TODO: why this activity doesn't need the onSaveInstance() and onRestoreInstance() methods to save state? wtf!!
@@ -85,7 +89,7 @@ public class CheckNumberActivity extends Activity {
     public void callNumber(View view)
     {
         // Create new intent to dial the number shown on screen and fires the activity.
-        Intent i = new Intent(android.content.Intent.ACTION_CALL, Uri.parse("tel:+" + phone_check.getText().toString()));
+        Intent i = new Intent(android.content.Intent.ACTION_CALL, Uri.parse("tel:" + phoneCheck.getText().toString()));
         startActivity(i);
     }
 
