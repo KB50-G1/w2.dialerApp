@@ -1,10 +1,10 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.dialerApp.phoneApi;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 
 /**
- * Created by alfonsopidal on 23/11/14.
+ * Created by alfonsopidal on 23/11/14..
  */
 public class NetworkHelper {
 

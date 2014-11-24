@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.dialerApp.phoneFunctions;
 
 import java.io.Serializable;
 
@@ -26,10 +26,6 @@ public class PhoneNumber implements Serializable {
 
     public String getNumber() {
         return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getCountry() {

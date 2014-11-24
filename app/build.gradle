@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "pidal.alfonso.phonedialergroup1"
-        minSdkVersion 14
+        minSdkVersion 9
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -21,6 +21,7 @@ android {
         }
     }
 
+
     /*
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -34,7 +35,10 @@ android {
 
 repositories {
     // mavenCentral()
+
 }
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

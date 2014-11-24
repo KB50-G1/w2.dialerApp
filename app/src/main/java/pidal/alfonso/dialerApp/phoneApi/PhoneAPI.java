@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.dialerApp.phoneApi;
 
 import android.util.Log;
 
@@ -20,7 +20,6 @@ import java.io.InputStreamReader;
  */
 public class PhoneAPI {
 
-
     private String phoneNumber;
 
     public PhoneAPI(String phoneNumber) {
@@ -35,7 +34,8 @@ public class PhoneAPI {
         StringBuilder stringBuilder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
-        httpGet.addHeader("X-Mashape-Key", "Iszt7FIyYhmshQ6ikMVTyJz9dZXOp1MMx3Djsn5EIXUGVdfIIf");
+        httpGet.addHeader("X-Mashape-Key", "jLKJwRoc21mshGabedDbjzjRDuBnp1ksebojsn9glwQJhZhpHe");
+        // other api key: Iszt7FIyYhmshQ6ikMVTyJz9dZXOp1MMx3Djsn5EIXUGVdfIIf
 
         try {
             HttpResponse response = client.execute(httpGet);
@@ -55,6 +55,7 @@ public class PhoneAPI {
                 }
             } else {
                 Log.e("JSON", "Failed to connect/download JSON!");
+                Log.e("STATUS_CODE", Integer.toString(statusCode));
             }
 
 
@@ -63,6 +64,8 @@ public class PhoneAPI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Log.v("JSON", stringBuilder.toString());
 
         return stringBuilder.toString();
     }

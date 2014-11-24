@@ -50,8 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
-            android:padding="30dp">
+            android:padding="20dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -177,15 +176,17 @@
 
         </TableLayout>
 
-        <ImageButton
+        <Button
             android:id="@+id/button_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:onClick="goToCheckNumber"
-            android:src="@drawable/ic_launcher"
+            android:backgroundTint="@color/lightGray"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:padding="10dp"
             android:text="@string/text_phone_number"/>
+
     </LinearLayout>
 
 </LinearLayout>

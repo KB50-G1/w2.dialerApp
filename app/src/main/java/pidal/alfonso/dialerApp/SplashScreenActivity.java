@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.dialerApp;
 
 import android.app.Activity;
 import android.content.Intent;
