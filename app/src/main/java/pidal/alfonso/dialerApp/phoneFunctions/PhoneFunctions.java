@@ -1,8 +1,5 @@
 package pidal.alfonso.dialerApp.phoneFunctions;
 
-
-import android.widget.TextView;
-
 /**
  * Created by Friso on 14/11/21.
  */
@@ -46,27 +43,15 @@ public final class PhoneFunctions {
     }
 
     public String getFirstFourChar(String argText) {
-        String threeChar;
-        String text = argText;
-        threeChar = text.substring(0, 4);
-
-        return threeChar;
+        return argText.substring(0, 4);
     }
 
     public String getFirstThreeChar(String argText) {
-        String twoChar;
-        String text = argText;
-        twoChar = text.substring(0, 3);
-
-        return twoChar;
+        return argText.substring(0, 3);
     }
 
     public String getFirstTwoChar(String argText) {
-        String oneChar;
-        String text = argText;
-        oneChar = text.substring(0, 2);
-
-        return oneChar;
+        return argText.substring(0, 2);
     }
 
 }
