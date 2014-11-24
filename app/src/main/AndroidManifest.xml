@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pidal.alfonso.phonedialergroup1" >
+<manifest
+    package="pidal.alfonso.phonedialergroup1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!-- Splash Screen -->
         <activity
             android:name=".SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="pidal.alfonso.DIALERAPP" />
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="pidal.alfonso.DIALERAPP"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
         <!-- Dialer Screen -->
         <activity
             android:name="pidal.alfonso.phonedialergroup1.DialerActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
         </activity>
 
         <!-- Check Number Screen -->
         <activity
             android:name="pidal.alfonso.phonedialergroup1.CheckNumberActivity"
             android:label="@string/title_activity_check_number"
-            android:parentActivityName="pidal.alfonso.phonedialergroup1.DialerActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="pidal.alfonso.phonedialergroup1.DialerActivity" />
+            android:parentActivityName="pidal.alfonso.phonedialergroup1.DialerActivity">
+            <!--
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="pidal.alfonso.phonedialergroup1.DialerActivity" />
+            -->
         </activity>
 
     </application>
