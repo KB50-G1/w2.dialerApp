@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
@@ -82,7 +83,12 @@ public class CheckNumberActivity extends Activity {
 
         // Format the phone number received on the intent.
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
-        String formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber.getNumber(), "NL");
+
+        String formattedNumber = phoneNumber.getNumber();
+        if (android.os.Build.VERSION.SDK_INT >= 21)
+        {
+            formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber.getNumber(), "NL");
+        }
 
         phoneNumber.setFormattedNumber(formattedNumber);
 

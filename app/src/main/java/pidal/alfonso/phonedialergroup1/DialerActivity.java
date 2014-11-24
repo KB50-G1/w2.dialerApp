@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +24,12 @@ public class DialerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialer);
 
-        // Hiding the Action Bar
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
+            // Hiding the Action Bar
+            ActionBar actionBar = getActionBar();
+            actionBar.hide();
+        }
+
 
         // Getting references for activity views.
         phoneNumber = (TextView) findViewById(R.id.text_phone_number);
