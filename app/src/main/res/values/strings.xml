@@ -7,9 +7,9 @@
     <string name="title_activity_check_number">Checking Number</string>
     <string name="button_call">Call</string>
     <string name="button_goback">Go Back</string>
-    <string name="activity_country">Country :</string>
-    <string name="activity_phone">Phone :</string>
-    <string name="activity_type">Type :</string>
+    <string name="country">Country:</string>
+    <string name="phone">Phone:</string>
+    <string name="type">Type:</string>
     <string name="number_1">1</string>
     <string name="number_2">2</string>
     <string name="number_3">3</string>
@@ -20,7 +20,7 @@
     <string name="number_8">8</string>
     <string name="number_9">9</string>
     <string name="number_0">0</string>
-    <string name="country_name">Country:</string>
+    <string name="not_available">Not Available</string>
 
     <string-array name="CountryCodes" >
         <item>93,AF</item>

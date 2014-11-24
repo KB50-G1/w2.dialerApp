@@ -5,7 +5,7 @@
               android:background="#FFFFFF"
               android:gravity="center"
               android:orientation="vertical"
-              tools:context="pidal.alfonso.phonedialergroup1.SplashScreenActivity">
+              tools:context="pidal.alfonso.dialerApp.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/imageView"

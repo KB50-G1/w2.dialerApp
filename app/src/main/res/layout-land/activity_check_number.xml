@@ -2,26 +2,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@color/white"
+    android:baselineAligned="false"
+    android:gravity="center"
     android:orientation="horizontal">
 
     <TableLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1">
+
         <!--1 row-->
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             >
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:padding="16dp"
-                android:text="@string/activity_phone"
+                android:text="@string/phone"
                 android:textSize="20sp"
                 />
 
@@ -29,25 +32,27 @@
                 android:id="@+id/phone_check"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:padding="20dp"
                 android:text=""
                 android:textSize="20sp"
                 />
 
-                <!--here comes the phone number -->
+            <!--here comes the phone number -->
         </TableRow>
+
         <!--2 row-->
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:padding="16dp"
-                android:text="@string/activity_country"
+                android:text="@string/country"
                 android:textSize="20sp"
                 />
 
@@ -55,14 +60,14 @@
                 android:id="@+id/country_check"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:padding="16dp"
                 android:text=""
                 android:textSize="20sp"
                 />
 
-
         </TableRow>
+
         <!--3 row -->
         <TableRow
             android:layout_width="match_parent"
@@ -72,55 +77,55 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:padding="16dp"
-                android:text="@string/activity_type"
+                android:text="@string/type"
                 android:textSize="20sp"
                 />
+
             <TextView
                 android:id="@+id/linetype_check"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="start"
                 android:padding="16dp"
                 android:text=""
                 android:textSize="20sp"
                 />
-
-
         </TableRow>
+
     </TableLayout>
-    
-
-
-
-
-
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal"
+        >
 
         <ImageButton
             android:id="@+id/callNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="callNumber"
-            android:text="@string/button_call"
-            android:src="@drawable/ic_launcher"
             android:background="@color/white"
+            android:contentDescription="@string/button_call"
+            android:onClick="callNumber"
+            android:padding="10dp"
+            android:src="@drawable/ic_launcher"
             />
 
         <ImageButton
             android:id="@+id/button_goback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/button_goback"
             android:onClick="goBack"
-            android:text="@string/button_goback"
+            android:padding="10dp"
             android:src="@drawable/ic_communication_dialpad"
-
             />
+
     </LinearLayout>
+
 </LinearLayout>

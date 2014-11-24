@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.dialerApp;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -10,31 +10,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class DialerActivity extends Activity {
 
     private TextView phoneNumber;
-    private Button callButton;
-    private ImageButton deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialer);
 
+        // Check phones API version to disable the action bar.
         if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
             // Hiding the Action Bar
             ActionBar actionBar = getActionBar();
-            actionBar.hide();
+            if (actionBar != null) {
+                actionBar.hide();
+            }
         }
-
 
         // Getting references for activity views.
         phoneNumber = (TextView) findViewById(R.id.text_phone_number);
-        callButton = (Button) findViewById(R.id.button_check);
-        deleteButton = (ImageButton) findViewById(R.id.button_remove);
+        Button callButton = (Button) findViewById(R.id.button_check);
+        ImageButton deleteButton = (ImageButton) findViewById(R.id.button_remove);
 
         callButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -103,11 +102,21 @@ public class DialerActivity extends Activity {
         // Get the button that was pressed. (note all numbers use this method)
         Button pressedButton = (Button) findViewById(view.getId());
 
+        // append the button text (the number itself) to the phone number.
+        phoneNumber.append(pressedButton.getText().toString());
+
+        // Play sound.
+        playSound(Integer.parseInt(pressedButton.getText().toString()));
+
+    }
+
+    private void playSound(int numberPressed)
+    {
         // MediaPlayer instance that plays sound.
         MediaPlayer buttonSound;
 
         // Switch case statement for different sounds with different buttons.
-        switch (Integer.parseInt(pressedButton.getText().toString())) {
+        switch (numberPressed) {
             case 0:
                 buttonSound = MediaPlayer.create(DialerActivity.this, R.raw.cellphonenr0);
                 break;
@@ -147,17 +156,12 @@ public class DialerActivity extends Activity {
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-                // TODO Auto-generated method stub
                 mp.reset();
                 mp.release();
-                mp = null;
             }
 
         });
         buttonSound.start();
-
-        // append the button text (the number itself) to the phone number.
-        phoneNumber.append(pressedButton.getText().toString());
     }
 
     public void removeNumber(View view) {

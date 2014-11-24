@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1;
+package pidal.alfonso.dialerApp;
 
 import android.app.Activity;
 
@@ -6,29 +6,27 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import pidal.alfonso.phonedialergroup1.phoneapi.NetworkHelper;
-import pidal.alfonso.phonedialergroup1.phoneapi.PhoneAPI;
-import pidal.alfonso.phonedialergroup1.phonefunctions.PhoneFunctions;
+import pidal.alfonso.dialerApp.phoneApi.NetworkHelper;
+import pidal.alfonso.dialerApp.phoneApi.PhoneAPI;
+import pidal.alfonso.dialerApp.phoneFunctions.PhoneFunctions;
+import pidal.alfonso.dialerApp.phoneFunctions.PhoneNumber;
 
 public class CheckNumberActivity extends Activity {
 
     private TextView phoneCheck;
     private TextView countryCheck;
-    private TextView linetypeCheck;
+    private TextView lineTypeCheck;
 
     private PhoneNumber phoneNumber;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,21 +38,22 @@ public class CheckNumberActivity extends Activity {
         // Getting the country text view
         countryCheck = (TextView) findViewById(R.id.country_check);
         // Get the line type text view
-        linetypeCheck = (TextView) findViewById(R.id.linetype_check);
+        lineTypeCheck = (TextView) findViewById(R.id.linetype_check);
 
         if (savedInstanceState == null) {
             // Get the intent and use the data inside it to update the phone number on screen.
             Intent intent = getIntent();
+
+            // Create new PhoneNumber instance, that will save all data.
             phoneNumber = new PhoneNumber(intent.getStringExtra("phoneNumber"));
+
             // Call the API only IF internet is available, and pass the phone number to it so it can grab data.
             if (NetworkHelper.isNetworkAvailable(getApplicationContext()))
                 new PhoneAPICall(this).execute(phoneNumber.getNumber());
             else {
                 noInternetData();
             }
-
         }
-
     }
 
     @Override
@@ -76,7 +75,7 @@ public class CheckNumberActivity extends Activity {
         // Re-populate the fields
         phoneCheck.setText(phoneNumber.getFormattedNumber());
         countryCheck.setText(phoneNumber.getCountry());
-        linetypeCheck.setText(phoneNumber.getLineType());
+        lineTypeCheck.setText(phoneNumber.getLineType());
     }
 
     public void noInternetData() {
@@ -85,24 +84,23 @@ public class CheckNumberActivity extends Activity {
         // TODO: this is not working good enough. Also the method formatNumber() is deprecated?
 
         String formattedNumber = phoneNumber.getNumber();
-        if (android.os.Build.VERSION.SDK_INT >= 21)
-        {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
             formattedNumber = PhoneNumberUtils.formatNumber(phoneNumber.getNumber(), "NL");
         }
 
+        // Save formatted phone number
         phoneNumber.setFormattedNumber(formattedNumber);
 
-        if (phoneNumber.getNumber().equals(phoneNumber.getFormattedNumber())) {
-            // Set the text if the phone number is not formatted.
-            phoneCheck.setText("Not a valid number");
-        } else {
+        // Set the country detected using the PhoneFunctions Helper Class.
+        phoneNumber.setCountry(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phoneNumber.getNumber()));
 
-            // Set the text with the formatted text.
-            phoneCheck.setText(formattedNumber);
+        // Save default (not available) when no internet is available
+        phoneNumber.setLineType(getResources().getText(R.string.not_available).toString());
 
-            // Appending the country detected using the PhoneFunctions Helper Class.
-            countryCheck.append(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phoneCheck));
-        }
+        // Set the text in the views
+        phoneCheck.setText(phoneNumber.getFormattedNumber());
+        countryCheck.setText(phoneNumber.getCountry());
+        lineTypeCheck.setText(phoneNumber.getLineType());
 
     }
 
@@ -128,11 +126,9 @@ public class CheckNumberActivity extends Activity {
 
     private class PhoneAPICall extends AsyncTask<String, Void, String> {
 
-        private Activity activity;
         private ProgressDialog dialog;
 
         private PhoneAPICall(Activity activity) {
-            this.activity = activity;
             this.dialog = new ProgressDialog(activity);
         }
 
@@ -161,7 +157,7 @@ public class CheckNumberActivity extends Activity {
 
                 phoneCheck.setText(phoneFormatted);
                 countryCheck.setText(countryName);
-                linetypeCheck.setText(lineName);
+                lineTypeCheck.setText(lineName);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -179,9 +175,7 @@ public class CheckNumberActivity extends Activity {
             String phoneNumberString = params[0];
             PhoneAPI call = new PhoneAPI(phoneNumberString);
 
-            String data = call.getData();
-
-            return data;
+            return call.getData();
         }
     }
 

@@ -1,4 +1,4 @@
-package pidal.alfonso.phonedialergroup1.phonefunctions;
+package pidal.alfonso.dialerApp.phoneFunctions;
 
 
 import android.widget.TextView;
@@ -10,8 +10,6 @@ import android.widget.TextView;
 public final class PhoneFunctions {
 
     private static PhoneFunctions instance;
-    private String phoneNumber;
-
 
     private PhoneFunctions() {
     }
@@ -23,12 +21,12 @@ public final class PhoneFunctions {
         return instance;
     }
 
-    public String getCountry(String[] argStringArray, TextView argText) {
+    public String getCountry(String[] argStringArray, String argText) {
         String country = "";
 
-        if (argText.getText().toString().length() >= 4) {
-            for (int i = 0; i < argStringArray.length; i++) {
-                String[] g = argStringArray[i].split(",");
+        if (argText.length() >= 4) {
+            for (String item : argStringArray) {
+                String[] g = item.split(",");
                 if (g[0].equals(getFirstFourChar(argText))) {
                     country = g[1];
                     break;
@@ -47,25 +45,25 @@ public final class PhoneFunctions {
         return country;
     }
 
-    public String getFirstFourChar(TextView argText) {
+    public String getFirstFourChar(String argText) {
         String threeChar;
-        String text = argText.getText().toString();
+        String text = argText;
         threeChar = text.substring(0, 4);
 
         return threeChar;
     }
 
-    public String getFirstThreeChar(TextView argText) {
+    public String getFirstThreeChar(String argText) {
         String twoChar;
-        String text = argText.getText().toString();
+        String text = argText;
         twoChar = text.substring(0, 3);
 
         return twoChar;
     }
 
-    public String getFirstTwoChar(TextView argText) {
+    public String getFirstTwoChar(String argText) {
         String oneChar;
-        String text = argText.getText().toString();
+        String text = argText;
         oneChar = text.substring(0, 2);
 
         return oneChar;

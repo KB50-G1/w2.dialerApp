@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Dialer App</string>
+    <string name="app_name">LlamApp</string>
     <string name="action_settings">Preferencias</string>
     <string name="text_phone_number">Comprobar número</string>
-    <string name="title_activity_check_number">Comprbación de número</string>
+    <string name="title_activity_check_number">Comprobando número</string>
     <string name="button_call">Llamar</string>
     <string name="button_goback">Volver</string>
+    <string name="country">País:</string>
+    <string name="phone">Número:</string>
+    <string name="type">Tipo:</string>
     <string name="number_1">1</string>
     <string name="number_2">2</string>
     <string name="number_3">3</string>
@@ -17,7 +20,6 @@
     <string name="number_8">8</string>
     <string name="number_9">9</string>
     <string name="number_0">0</string>
-    <string name="country_name">Pais</string>
-
+    <string name="not_available">No disponible</string>
 
 </resources>
