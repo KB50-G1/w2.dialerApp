@@ -28,10 +28,6 @@ public class PhoneNumber implements Serializable {
         return number;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public String getCountry() {
         return country;
     }
