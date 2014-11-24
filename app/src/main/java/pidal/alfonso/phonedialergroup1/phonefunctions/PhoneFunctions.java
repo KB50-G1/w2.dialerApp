@@ -7,7 +7,7 @@ import android.widget.TextView;
  * Created by Friso on 14/11/21.
  */
 
-public final class PhoneFunctions implements Comparable<Object> {
+public final class PhoneFunctions {
 
     private static PhoneFunctions instance;
     private String phoneNumber;
@@ -71,15 +71,4 @@ public final class PhoneFunctions implements Comparable<Object> {
         return oneChar;
     }
 
-    @Override
-    public int compareTo(Object otherObject) {
-        String otherNumber = (String) otherObject;
-        if (phoneNumber != otherNumber) {
-            return -1;
-        } else if (phoneNumber.equals(otherNumber)) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
 }
