@@ -92,7 +92,7 @@ public class CheckNumberActivity extends Activity {
         phoneNumber.setFormattedNumber(formattedNumber);
 
         // Set the country detected using the PhoneFunctions Helper Class.
-        phoneNumber.setCountry(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes2), phoneNumber.getNumber()));
+        phoneNumber.setCountry(PhoneFunctions.getInstance().getCountry(this.getResources().getStringArray(R.array.CountryCodes), phoneNumber.getNumber()));
 
         // Save default (not available) when no internet is available
         phoneNumber.setLineType(getResources().getText(R.string.not_available).toString());
