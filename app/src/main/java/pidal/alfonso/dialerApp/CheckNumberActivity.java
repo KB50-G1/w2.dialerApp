@@ -99,6 +99,10 @@ public class CheckNumberActivity extends Activity {
 
         // Set the text in the views
         phoneCheck.setText(phoneNumber.getFormattedNumber());
+
+        if(phoneNumber.getCountry().isEmpty())
+            phoneNumber.setCountry(this.getResources().getString(R.string.not_available));
+
         countryCheck.setText(phoneNumber.getCountry());
         lineTypeCheck.setText(phoneNumber.getLineType());
 
