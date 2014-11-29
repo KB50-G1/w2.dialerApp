@@ -57,12 +57,21 @@ public class CheckNumberActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Re-populate the fields
+        phoneCheck.setText(phoneNumber.getFormattedNumber());
+        countryCheck.setText(phoneNumber.getCountry());
+        lineTypeCheck.setText(phoneNumber.getLineType());
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         // Save the object when the activity is destroyed
         outState.putSerializable("phoneNumber", phoneNumber);
-
     }
 
     @Override
@@ -71,11 +80,6 @@ public class CheckNumberActivity extends Activity {
 
         // Get back the saved object
         phoneNumber = (PhoneNumber) savedInstanceState.getSerializable("phoneNumber");
-
-        // Re-populate the fields
-        phoneCheck.setText(phoneNumber.getFormattedNumber());
-        countryCheck.setText(phoneNumber.getCountry());
-        lineTypeCheck.setText(phoneNumber.getLineType());
     }
 
     public void noInternetData() {
@@ -99,6 +103,10 @@ public class CheckNumberActivity extends Activity {
 
         // Set the text in the views
         phoneCheck.setText(phoneNumber.getFormattedNumber());
+
+        if(phoneNumber.getCountry().isEmpty())
+            phoneNumber.setCountry(this.getResources().getString(R.string.not_available));
+
         countryCheck.setText(phoneNumber.getCountry());
         lineTypeCheck.setText(phoneNumber.getLineType());
 
